@@ -36,6 +36,12 @@ const tabEkleyici = (secici) => {
   // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
   // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
+  // const getData = () => {
+  //   axios.get(`http://localhost:5001/api/konular`).then((response) => {
+  //     console.log(response.data);
+  //     return response.data;
+  //   });
+  // };
 
   async function getData() {
     const a = await axios
@@ -46,6 +52,16 @@ const tabEkleyici = (secici) => {
 
     return a;
   }
+
+  getData();
+
+  // const runApp = async () => {
+  //   await getData();
+  //   const tabEkle = document.querySelector(secici);
+  //   return tabEkle.append(Tablar(getData()));
+  // };
+
+  // return runApp;
 };
 
 export { Tablar, tabEkleyici };
