@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (makale) => {
   // GÖREV 5
   // ---------------------
@@ -54,6 +56,27 @@ const cardEkleyici = (secici) => {
   // ---------------------
   // Tek bağımsız değişkeni olarak bir css seçici alan bu fonksiyonu uygulayın.
   // Makaleleri bu uç noktadan almalıdır: `http://localhost:5001/api/makaleler` (console.log ile test edin!!).
+
+  async function dataCek() {
+    const bekle = await axios
+      .get(`http://localhost:5001/api/makaleler`)
+      .then((veri) => {
+        let eleman = document.querySelector(secici);
+        const veriler = veri.data.makaleler;
+        // console.log(veriler);
+
+        for (let key in veriler) {
+          veriler[key].forEach((element) => {
+            eleman.append(Card(element));
+          });
+        }
+      });
+
+    return bekle;
+  }
+
+  dataCek();
+
   // Bununla birlikte, makaleler tek bir düzenli dizi halinde organize edilmemiştir. Yanıtı yakından inceleyin!
   // Card bileşenini kullanarak yanıttaki her makale nesnesinden bir kart oluşturun.
   // Her cardı, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
